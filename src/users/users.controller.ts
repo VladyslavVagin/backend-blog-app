@@ -49,16 +49,29 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    return this.usersService.findAll(getUserParamDto, limit, page);
+    return this.usersService.getUsers(getUserParamDto, limit, page);
   }
 
   @Post()
-  public createUsers(@Body() createUserDto: CreateUserDto) {
-    console.log(createUserDto instanceof CreateUserDto);
-    return 'You sent a post request to users endpoint';
+  @ApiOperation({
+    summary: 'Creates a new user on the application.',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'User created successfully',
+  })
+  public createUser(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.createUser(createUserDto);
   }
 
   @Patch()
+  @ApiOperation({
+    summary: 'Updates a user on the application.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'User updated successfully',
+  })
   public patchUser(@Body() patchUserDto: PatchUserDto) {
     return patchUserDto;
   }
