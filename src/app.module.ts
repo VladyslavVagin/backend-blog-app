@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -11,6 +12,7 @@ import { TagsModule } from './tags/tags.module';
   imports: [
     UsersModule,
     PostsModule,
+    ConfigModule.forRoot(),
     AuthModule,
     MongooseModule.forRoot(
       'mongodb+srv://vladtwince:9a4j8jMTv3KbSM68@cluster0.nekub.mongodb.net/',
