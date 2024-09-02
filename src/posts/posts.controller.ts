@@ -1,8 +1,17 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { PostsService } from './providers/posts.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePostDto } from './dtos/create-post.dto';
 import { PatchPostDto } from './dtos/patch-post.dto';
+import { GetPostsDto } from './dtos/get-posts.dto';
 
 @Controller('posts')
 @ApiTags('Posts')
@@ -17,9 +26,12 @@ export class PostsController {
   /*
    * GET localhost:3000/posts/:userId
    */
-  @Get()
-  public getPosts() {
-    return this.postsService.findAll();
+  @Get('/:userId?')
+  public getPosts(
+    @Param('userId') userId: string,
+    @Query() postQuery: GetPostsDto,
+  ) {
+    return this.postsService.findAll(postQuery, userId);
   }
 
   @ApiOperation({
@@ -36,15 +48,19 @@ export class PostsController {
   }
 
   @ApiOperation({
-    summary: 'Updates and existing blog post in the database.',
+    summary: 'Updates an existing blog post in the database.',
   })
   @ApiResponse({
     status: 200,
     description:
-      'You get a success 20o response if the post is updated successfully',
+      'You get a success 200 response if the post is updated successfully',
   })
-  @Patch()
-  public updatePost(@Body() patchPostsDto: PatchPostDto) {
-    console.log(patchPostsDto);
+  @Patch('/:id')
+  public async updatePost(
+    @Param('id') id: string,
+    @Body() patchPostsDto: PatchPostDto,
+  ) {
+    patchPostsDto.id = id; // set the _id property of patchPostsDto to the id from the route parameters
+    return await this.postsService.update(patchPostsDto);
   }
 }

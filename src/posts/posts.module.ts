@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PostsController } from './posts.controller';
 import { PostsService } from './providers/posts.service';
 import { UsersModule } from 'src/users/users.module';
+import { PaginationModule } from 'src/common/pagination/pagination.module';
 
 @Module({
   controllers: [PostsController],
@@ -17,6 +18,7 @@ import { UsersModule } from 'src/users/users.module';
       },
     ]),
     UsersModule,
+    PaginationModule
   ],
 })
 export class PostsModule {}

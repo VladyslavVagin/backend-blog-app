@@ -1,9 +1,8 @@
-PATCH http://localhost:3000/posts
+PATCH http://localhost:3000/posts/66d0786c20f71986a4071e37
 Content-Type: application/json
 
 {
-  "id": 1234,
-  "title": "What's new with NestJS",
-  "postType": "post",
-  "content": "post-content"
+  "title": "Super Puper Postik",
+  "postType": "series",
+  "content": "Something about something"
 }
