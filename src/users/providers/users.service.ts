@@ -1,7 +1,8 @@
 import {
-  ConflictException,
+  BadRequestException,
   Inject,
   Injectable,
+  RequestTimeoutException,
   forwardRef,
 } from '@nestjs/common';
 import { ConfigService, ConfigType } from '@nestjs/config';
@@ -37,20 +38,29 @@ export class UsersService {
     return this.usersModel.findOne({ email });
   }
 
-  /** Create a new user */
-  public async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const existingUser = await this.findOneByEmail(createUserDto.email);
-    if (existingUser) {
-      throw new ConflictException('Email already exists');
-    }
+   /** Create a new user */
+   public async createUser(createUserDto: CreateUserDto): Promise<User> {
+    try {
+      const existingUser = await this.findOneByEmail(createUserDto.email);
+      if (existingUser) {
+        throw new BadRequestException('Email already exists');
+      }
 
-    const newUser = new this.usersModel(createUserDto);
-    return await newUser.save();
+      const newUser = new this.usersModel(createUserDto);
+      return await newUser.save();
+    } catch (error) {
+      throw new RequestTimeoutException(error);
+    }
   }
 
   /** Find user by id */
   public findOneById(_id: string) {
-    return this.usersModel.findById(_id);
+    const user = this.usersModel.findById(_id);
+    if(!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    return user;
   }
 
   /** Get all users from database */
@@ -59,8 +69,6 @@ export class UsersService {
     limit: number = 10,
     page: number = 1,
   ): Promise<User[] | []> {
-    // test the profileConfig
-    console.log(this.profileConfiguration);
 
     return await this.usersModel
       .find()

@@ -49,7 +49,11 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    return this.usersService.getUsers(getUserParamDto, limit, page);
+    if(getUserParamDto.id) {
+      return this.usersService.findOneById(getUserParamDto.id);
+    } else {
+      return this.usersService.getUsers(getUserParamDto, limit, page);
+    }
   }
 
   @Post()

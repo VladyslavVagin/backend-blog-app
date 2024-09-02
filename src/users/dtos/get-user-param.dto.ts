@@ -1,10 +1,10 @@
-import { IsInt, IsOptional } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 import { Type } from 'class-transformer';
 
 export class GetUsersParamDto {
   @IsOptional()
-  @IsInt()
-  @Type(() => Number)
-  id?: number;
+  @IsString()
+  @Type(() => String)
+  id?: string;
 }
