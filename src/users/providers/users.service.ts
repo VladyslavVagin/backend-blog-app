@@ -13,6 +13,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import profileConfig from '../config/profile.config';
+import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
 
 @Injectable()
 export class UsersService {
@@ -31,11 +32,14 @@ export class UsersService {
     /** Inject profileConfig */
     @Inject(profileConfig.KEY)
     private readonly profileConfiguration: ConfigType<typeof profileConfig>,
+
+    /** Inject findOneUserByEmailProvider */
+    private readonly findOneUserByEmailProvider: FindOneUserByEmailProvider
   ) {}
 
   /** Find user by email */
-  public async findOneByEmail(email: string): Promise<User | null> {
-    return this.usersModel.findOne({ email });
+  public async findOneByEmail(email: string) {
+    return await this.findOneUserByEmailProvider.findOneByEmail(email);
   }
 
    /** Create a new user */
