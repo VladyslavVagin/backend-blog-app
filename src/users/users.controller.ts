@@ -8,12 +8,15 @@ import {
   Patch,
   Post,
   Query,
+  SetMetadata,
 } from '@nestjs/common';
 import { UsersService } from './providers/users.service';
 import { GetUsersParamDto } from './dtos/get-user-param.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('users')
 @ApiTags('Users')
@@ -57,6 +60,7 @@ export class UsersController {
   }
 
   @Post()
+  @Auth(AuthType.None)
   @ApiOperation({
     summary: 'Creates a new user on the application.',
   })

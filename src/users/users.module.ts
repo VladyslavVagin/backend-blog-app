@@ -11,7 +11,10 @@ import profileConfig from './config/profile.config';
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService, FindOneUserByEmailProvider],
+  providers: [
+    UsersService,
+    FindOneUserByEmailProvider,
+  ],
   exports: [UsersService],
   imports: [
     MongooseModule.forFeature([
