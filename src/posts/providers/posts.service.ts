@@ -2,7 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
-  RequestTimeoutException,
+  RequestTimeoutException, Body, Inject, forwardRef
 } from '@nestjs/common';
 import { UsersService } from 'src/users/providers/users.service';
 import { CreatePostDto } from '../dtos/create-post.dto';
@@ -13,14 +13,13 @@ import { PatchPostDto } from '../dtos/patch-post.dto';
 import { GetPostsDto } from '../dtos/get-posts.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { CreatePostProvider } from './create-post.provider';
+import { ActiveUserData } from 'src/auth/interfaces/active-user.interface';
+import { TagsService } from 'src/tags/providers/tags.service';
 
 @Injectable()
 export class PostsService {
   constructor(
-    /*
-     * Injecting Users Service
-     */
-    private readonly usersService: UsersService,
     /**
      * Inject postModel
      */
@@ -29,6 +28,10 @@ export class PostsService {
 
     /** Inject paginationProvider */
     private readonly paginationProvider: PaginationProvider,
+
+    /** Inject createPostProvider */
+    @Inject(forwardRef(() => CreatePostProvider))
+    private readonly createPostProvider: CreatePostProvider,
   ) {}
 
   /** Find post by slug */
@@ -37,18 +40,8 @@ export class PostsService {
   }
 
   /** Create a new post */
-  public async createPost(createPostDto: CreatePostDto) {
-    try {
-      const existingPost = await this.findOneBySlug(createPostDto.slug);
-      if (existingPost) {
-        throw new BadRequestException('Post with this slug already exists');
-      }
-
-      const newPost = new this.postModel(createPostDto);
-      return await newPost.save();
-    } catch (error) {
-      throw new RequestTimeoutException(error);
-    }
+  public async createPost(createPostDto: CreatePostDto, user: ActiveUserData) {
+    return this.createPostProvider.createPost(createPostDto, user);
   }
 
 /** Get all posts or all posts of a specific user */

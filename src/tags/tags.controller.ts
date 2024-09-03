@@ -21,7 +21,7 @@ export class TagsController {
   @Get()
   @ApiOperation({ summary: 'Get all tags' })
   @ApiResponse({ status: 200, description: 'All tags fetched successfully' })
-  public findAll() {
-    return this.tagsService.findAll();
+  public findAll(tags?: string[]) {
+    return this.tagsService.findAll(tags);
   }
 }

@@ -1,18 +1,22 @@
+{{
+  exports.publishOn = new Date().toString();
+}}
+
 POST http://localhost:3000/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmQ2MmIzYmZmYjYwMGNjMzIxYWUxM2QiLCJlbWFpbCI6InRpcmFtaXNzdUBqb2huLmNvbSIsImlhdCI6MTcyNTM3NDIyMSwiZXhwIjoxNzI1Mzc3ODIxLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.-N8xCui2h-UAxiPcURVB-bMBg69oLAIIZ4RZb1i9qm0
 
 {
-  "title": "My new post with MongoDB",
+  "title": "About Shipping From Containers",
   "postType": "post",
-  "slug": "new-mongo-post",
+  "slug": "shipping-post-containers",
   "status": "draft",
   "content": "post-content",
   "featuredImageUrl": "http://localhost.com/images/image1.jpg",
-  "publishOn": "2024-03-16T07:46:32+0000",
+  "publishOn": "{{publishOn}}",
   "tags": [
     "66d0a7288445603229511076",
     "66d5a3067eca866ac06973f3",
     "66d0a74a8445603229511078"
-  ],
-  "author": "66d07430b72373969a5c911c"
+  ]
 }

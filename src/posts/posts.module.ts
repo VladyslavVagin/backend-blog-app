@@ -6,10 +6,12 @@ import { PostsController } from './posts.controller';
 import { PostsService } from './providers/posts.service';
 import { UsersModule } from 'src/users/users.module';
 import { PaginationModule } from 'src/common/pagination/pagination.module';
+import { CreatePostProvider } from './providers/create-post.provider';
+import { TagsModule } from 'src/tags/tags.module';
 
 @Module({
   controllers: [PostsController],
-  providers: [PostsService],
+  providers: [PostsService, CreatePostProvider],
   imports: [
     MongooseModule.forFeature([
       {
@@ -18,7 +20,9 @@ import { PaginationModule } from 'src/common/pagination/pagination.module';
       },
     ]),
     UsersModule,
-    PaginationModule
+    PaginationModule,
+    TagsModule,
   ],
+  exports: [PostsService],
 })
 export class PostsModule {}

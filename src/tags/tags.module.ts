@@ -15,5 +15,6 @@ import { Tag, TagSchema } from './tag.schema';
       },
     ]),
   ],
+  exports: [TagsService],
 })
 export class TagsModule {}

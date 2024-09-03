@@ -30,11 +30,20 @@ export class TagsService {
   }
 
   /** Get all tags */
-  public async findAll() {
+  public async findAll(tags?: string[]) {
     try {
-      return await this.tagsModel.find().exec();
+      return await this.tagsModel.find({ _id: { $in: tags } }).exec();
     } catch (error) {
       throw new RequestTimeoutException('Error fetching tags');
+    }
+  }
+
+  /** Delete tag by ID */
+  public async delete(id: string) {
+    try {
+      return await this.tagsModel.findByIdAndDelete(id).exec();
+    } catch (error) {
+      throw new RequestTimeoutException('Error deleting tag');
     }
   }
 }
