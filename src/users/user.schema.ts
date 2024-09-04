@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import { Exclude } from 'class-transformer';
+import { Document } from 'mongoose';
 
 @Schema()
 export class User extends Document {
-  // Note: id is not needed because _id is added by default by MongoDb
+
   @Prop({
     type: String,
     isRequired: true,
@@ -24,9 +25,16 @@ export class User extends Document {
 
   @Prop({
     type: String,
-    isRequired: true,
+    isRequired: false,
   })
-  password: string;
+  @Exclude()
+  password?: string;
+
+  @Prop({
+    type: String,
+    isRequired: false,
+  })
+  googleId?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

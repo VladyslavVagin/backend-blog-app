@@ -1,10 +1,9 @@
 POST http://localhost:3000/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmQ2MmIzYmZmYjYwMGNjMzIxYWUxM2QiLCJlbWFpbCI6InRpcmFtaXNzdUBqb2huLmNvbSIsImlhdCI6MTcyNTM2MjY0MywiZXhwIjoxNzI1MzY2MjQzLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.LplDHxT0gLVsaFp1XBZRlfAQ9TNbb7wCGJ-XSnbo5L0
 
 {
     "firstName": "Barbos",
     "lastName": "Gusto",
-    "email": "barbos-pes@john.com",
+    "email": "barbo777@john.com",
     "password": "Password12345@"
 }

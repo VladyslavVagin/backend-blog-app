@@ -1,5 +1,6 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   DefaultValuePipe,
   Get,
@@ -8,7 +9,7 @@ import {
   Patch,
   Post,
   Query,
-  SetMetadata,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './providers/users.service';
 import { GetUsersParamDto } from './dtos/get-user-param.dto';
@@ -52,7 +53,7 @@ export class UsersController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    if(getUserParamDto.id) {
+    if (getUserParamDto.id) {
       return this.usersService.findOneById(getUserParamDto.id);
     } else {
       return this.usersService.getUsers(getUserParamDto, limit, page);
@@ -60,6 +61,7 @@ export class UsersController {
   }
 
   @Post()
+  @UseInterceptors(ClassSerializerInterceptor)
   @Auth(AuthType.None)
   @ApiOperation({
     summary: 'Creates a new user on the application.',
@@ -68,8 +70,8 @@ export class UsersController {
     status: 201,
     description: 'User created successfully',
   })
-  public createUser(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+  public async createUser(@Body() createUserDto: CreateUserDto) {
+    return await this.usersService.createUser(createUserDto);
   }
 
   @Patch()

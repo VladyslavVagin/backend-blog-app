@@ -1,40 +1,38 @@
 import {
   BadRequestException,
-  Inject,
   Injectable,
   RequestTimeoutException,
   forwardRef,
 } from '@nestjs/common';
-import { ConfigService, ConfigType } from '@nestjs/config';
-import { AuthService } from 'src/auth/providers/auth.service';
 import { GetUsersParamDto } from '../dtos/get-user-param.dto';
 import { User } from '../user.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from '../dtos/create-user.dto';
-import profileConfig from '../config/profile.config';
 import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
+import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
+import { CreateGoogleUserProvider } from './create-google-user.provider';
+import { GoogleUser } from '../interfaces/google-user.interface';
+import { CreateUserProvider } from './create-user.provider';
 
 @Injectable()
 export class UsersService {
   constructor(
-    /** Inject authService */
-    @Inject(forwardRef(() => AuthService))
-    private readonly authService: AuthService,
-
     /** Inject userModel */
     @InjectModel(User.name)
     private readonly usersModel: Model<User>,
 
-    /** Inject ConfigService */
-    private readonly configService: ConfigService,
-
-    /** Inject profileConfig */
-    @Inject(profileConfig.KEY)
-    private readonly profileConfiguration: ConfigType<typeof profileConfig>,
-
     /** Inject findOneUserByEmailProvider */
-    private readonly findOneUserByEmailProvider: FindOneUserByEmailProvider
+    private readonly findOneUserByEmailProvider: FindOneUserByEmailProvider,
+
+    /** Inject findOneByGoogleIdProvider */
+    private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
+
+    /** Inject createGoogleUserProvider */
+    private readonly createGoogleUserProvider: CreateGoogleUserProvider,
+
+    /** Inject createUserProvider */
+    private readonly createUserProvider: CreateUserProvider,
   ) {}
 
   /** Find user by email */
@@ -44,17 +42,7 @@ export class UsersService {
 
    /** Create a new user */
    public async createUser(createUserDto: CreateUserDto): Promise<User> {
-    try {
-      const existingUser = await this.findOneByEmail(createUserDto.email);
-      if (existingUser) {
-        throw new BadRequestException('Email already exists');
-      }
-
-      const newUser = new this.usersModel(createUserDto);
-      return await newUser.save();
-    } catch (error) {
-      throw new RequestTimeoutException(error);
-    }
+    return await this.createUserProvider.createUser(createUserDto);
   }
 
   /** Find user by id */
@@ -79,5 +67,13 @@ export class UsersService {
       .skip((page - 1) * limit)
       .limit(limit)
       .exec();
+  }
+
+  public async findOneByGoogleId(googleId: string) {
+    return await this.findOneByGoogleIdProvider.findOneByGoogleId(googleId);
+  }
+
+  public async createGoogleUser(googleUser: GoogleUser) {
+    return await this.createGoogleUserProvider.createGoogleUser(googleUser);
   }
 }
