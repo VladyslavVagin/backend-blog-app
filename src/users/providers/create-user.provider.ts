@@ -10,6 +10,7 @@ import { User } from '../user.schema';
 import { Model } from 'mongoose';
 import { HashingProvider } from 'src/auth/providers/hashing.provider';
 import { CreateUserDto } from '../dtos/create-user.dto';
+import { MailService } from 'src/mail/providers/mail.service';
 
 @Injectable()
 export class CreateUserProvider {
@@ -21,6 +22,9 @@ export class CreateUserProvider {
     /** Inject hashingProvider */
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
+
+      /** Inject mailService */
+      private readonly mailService: MailService,
   ) {}
 
   public async createUser(createUserDto: CreateUserDto) {
@@ -57,6 +61,12 @@ export class CreateUserProvider {
 
     // Delete the password property
     delete userObject.password;
+
+    try {
+      await this.mailService.sendUserWelcome(userObject);
+    } catch (error) {
+      throw new RequestTimeoutException(error);
+    }
 
     return userObject;
   }

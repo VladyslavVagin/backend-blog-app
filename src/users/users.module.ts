@@ -30,7 +30,7 @@ import profileConfig from './config/profile.config';
       },
     ]),
     forwardRef(() => AuthModule),
-    ConfigModule.forFeature(profileConfig),
+    ConfigModule.forFeature(profileConfig)
   ],
 })
 export class UsersModule {}
