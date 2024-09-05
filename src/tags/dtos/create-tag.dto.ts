@@ -8,14 +8,20 @@ import {
 } from 'class-validator';
 
 export class CreateTagDto {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'The name of the tag',
+    example: 'JavaScript',
+  })
   @IsString()
   @MinLength(3)
   @IsNotEmpty()
   @MaxLength(256)
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'The slug of the tag',
+    example: 'javascript',
+  })
   @IsString()
   @IsNotEmpty()
   @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {

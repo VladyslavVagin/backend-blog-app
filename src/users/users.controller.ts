@@ -15,7 +15,7 @@ import { UsersService } from './providers/users.service';
 import { GetUsersParamDto } from './dtos/get-user-param.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags, ApiBearerAuth, ApiParam, ApiBody } from '@nestjs/swagger';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { AuthType } from 'src/auth/enums/auth-type.enum';
 
@@ -28,6 +28,13 @@ export class UsersController {
   ) {}
 
   @Get('/:id?')
+  @ApiBearerAuth()
+  @ApiParam({
+    name: 'id',
+    description: 'The id of the user you want to fetch',
+    required: false,
+    example: '60f1b3b3b3b3b3b3b3b3b3b3',
+  })
   @ApiOperation({
     summary: 'Fetches a list of registered users on the application.',
   })
@@ -70,17 +77,26 @@ export class UsersController {
     status: 201,
     description: 'User created successfully',
   })
+  @ApiBody({
+    description: 'Body request to create a new user',
+    type: CreateUserDto,
+  })
   public async createUser(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.createUser(createUserDto);
   }
 
   @Patch()
+  @ApiBearerAuth()
   @ApiOperation({
     summary: 'Updates a user on the application.',
   })
   @ApiResponse({
     status: 200,
     description: 'User updated successfully',
+  })
+  @ApiBody({
+    description: 'Body request to update a user',
+    type: PatchUserDto,
   })
   public patchUser(@Body() patchUserDto: PatchUserDto) {
     return patchUserDto;

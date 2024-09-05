@@ -8,7 +8,14 @@ import {
   Query,
 } from '@nestjs/common';
 import { PostsService } from './providers/posts.service';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CreatePostDto } from './dtos/create-post.dto';
 import { PatchPostDto } from './dtos/patch-post.dto';
 import { GetPostsDto } from './dtos/get-posts.dto';
@@ -29,6 +36,20 @@ export class PostsController {
    * GET localhost:3000/posts/:userId
    */
   @Get('/:userId?')
+  @ApiOperation({
+    summary: 'Gets all posts for a user.',
+  })
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    description: 'Posts fetched successfully based on the query',
+  })
+  @ApiParam({
+    name: 'userId',
+    description: 'The id of the user whose posts you want to fetch',
+    required: false,
+    example: '60f1b3b3b3b3b3b3b3b3b3b3',
+  })
   public getPosts(
     @Param('userId') userId: string,
     @Query() postQuery: GetPostsDto,
@@ -44,7 +65,12 @@ export class PostsController {
     description:
       'You get a success 201 response if the post is created successfully',
   })
+  @ApiBody({
+    description: 'Body for creating a post',
+    type: CreatePostDto,
+  })
   @Post()
+  @ApiBearerAuth()
   public createPost(
     @Body() createPostDto: CreatePostDto,
     @ActiveUser() user: ActiveUserData,
@@ -60,6 +86,17 @@ export class PostsController {
     description:
       'You get a success 200 response if the post is updated successfully',
   })
+  @ApiBody({
+    description: 'Body for updating a post',
+    type: PatchPostDto,
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The id of the post you want to update',
+    required: true,
+    example: '60f1b3b3b3b3b3b3b3b3b3',
+  })
+  @ApiBearerAuth()
   @Patch('/:id')
   public async updatePost(
     @Param('id') id: string,

@@ -22,9 +22,10 @@ async function bootstrap() {
 
 /** Create Swagger Configuration */
 const configSwagger = new DocumentBuilder()
-.setTitle('NestJS Masterclass - Blog app API')
-.setDescription('Use the base API URL as http://localhost:3000')
+.setTitle('REST API for BLOG WEB APP')
+.setDescription('The REST API documentation for the BLOG WEB APP. Created with NestJS')
 .addServer('http://localhost:3000/')
+.addServer('https://backend-blog-app-ua3a.onrender.com/')
 .setVersion('1.0')
 .build();
 // Instantiate Swagger
