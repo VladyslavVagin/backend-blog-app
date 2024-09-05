@@ -144,8 +144,19 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#createTag" >createTag</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                <a href="#findAll" >findAll</a>
                             </li>
                         </ul>
                     </td>
@@ -173,6 +184,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>createTag</b></span>
                         <a href="#createTag"><span class="icon ion-ios-link"></span></a>
@@ -190,14 +203,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@ApiOperation({summary: &#x27;Create a new tag&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Tag created successfully&#x27;})<br /></code>
+                    <code>@Post()<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;Create a new tag&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Tag created successfully&#x27;})<br />@ApiBody({description: &#x27;Body request to create a new tag&#x27;, type: CreateTagDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/tags/tags.controller.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/tags/tags.controller.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -243,17 +256,98 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(tags?: string[])</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get()<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;Get all tags&#x27;})<br />@ApiResponse({status: 200, description: &#x27;All tags fetched successfully&#x27;})<br />@ApiBody({description: &#x27;Query tags by tag ids&#x27;, type: undefined})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/tags/tags.controller.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tags</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Post } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Post } from &#x27;@nestjs/common&#x27;;
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { TagsService } from &#x27;./providers/tags.service&#x27;;
 import { CreateTagDto } from &#x27;./dtos/create-tag.dto&#x27;;
 
 @Controller(&#x27;tags&#x27;)
-@ApiTags(&#x27;tags&#x27;)
+@ApiTags(&#x27;Tags&#x27;)
 export class TagsController {
   constructor(
     /** Inject tagsService */
@@ -261,10 +355,27 @@ export class TagsController {
   ) {}
 
   @Post()
+  @ApiBearerAuth()
   @ApiOperation({ summary: &#x27;Create a new tag&#x27; })
   @ApiResponse({ status: 201, description: &#x27;Tag created successfully&#x27; })
+  @ApiBody({
+    description: &#x27;Body request to create a new tag&#x27;,
+    type: CreateTagDto
+   })
   public createTag(@Body() createTagDto: CreateTagDto) {
     return this.tagsService.createTag(createTagDto);
+  }
+
+  @Get()
+  @ApiBearerAuth()
+  @ApiOperation({ summary: &#x27;Get all tags&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;All tags fetched successfully&#x27; })
+  @ApiBody({
+    description: &#x27;Query tags by tag ids&#x27;,
+    type: [String],
+  })
+  public findAll(tags?: string[]) {
+    return this.tagsService.findAll(tags);
   }
 }
 </code></pre>

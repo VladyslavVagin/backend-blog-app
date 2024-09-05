@@ -1,10 +1,8 @@
 import {
-  BadRequestException,
   Injectable,
   NotFoundException,
-  RequestTimeoutException, Body, Inject, forwardRef
+  RequestTimeoutException, Inject, forwardRef, Delete
 } from '@nestjs/common';
-import { UsersService } from 'src/users/providers/users.service';
 import { CreatePostDto } from '../dtos/create-post.dto';
 import { Model } from 'mongoose';
 import { Post } from '../post.schema';
@@ -15,7 +13,6 @@ import { PaginationProvider } from 'src/common/pagination/providers/pagination.p
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 import { CreatePostProvider } from './create-post.provider';
 import { ActiveUserData } from 'src/auth/interfaces/active-user.interface';
-import { TagsService } from 'src/tags/providers/tags.service';
 
 @Injectable()
 export class PostsService {
@@ -74,6 +71,22 @@ public async findAll(postQuery?: GetPostsDto ,userId?: string): Promise<Paginate
         post.publishOn = patchPostDto.publishOn ?? post.publishOn;
   
         await post.save();
+        return post;
+      } catch (error) {
+        throw new RequestTimeoutException('Unable to process your request at the moment please try later', {
+          description: 'Error connecting to the database',
+        });
+      }
+    }
+
+    /** Delete a post */
+    public async deletePost(postId: string) {
+      try {
+        const post = await this.postModel.findById(postId);
+        if (!post) {
+          throw new NotFoundException('The post ID does not exist');
+        }
+        await this.postModel.deleteOne({ _id: postId });
         return post;
       } catch (error) {
         throw new RequestTimeoutException('Unable to process your request at the moment please try later', {

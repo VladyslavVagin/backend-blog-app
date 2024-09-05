@@ -201,13 +201,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty()<br />@IsString()<br />@MinLength(3)<br />@IsNotEmpty()<br />@MaxLength(256)<br />
+                            @ApiProperty({description: &#x27;The name of the tag&#x27;, example: &#x27;JavaScript&#x27;})<br />@IsString()<br />@MinLength(3)<br />@IsNotEmpty()<br />@MaxLength(256)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/tags/dtos/create-tag.dto.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/tags/dtos/create-tag.dto.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -241,13 +241,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty()<br />@IsString()<br />@IsNotEmpty()<br />@Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {message: &#x27;A slug should be all small letters and uses only &quot;-&quot; and without spaces. For example &quot;my-url&quot;&#x27;})<br />@MaxLength(512)<br />
+                            @ApiProperty({description: &#x27;The slug of the tag&#x27;, example: &#x27;javascript&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {message: &#x27;A slug should be all small letters and uses only &quot;-&quot; and without spaces. For example &quot;my-url&quot;&#x27;})<br />@MaxLength(512)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/tags/dtos/create-tag.dto.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/tags/dtos/create-tag.dto.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -276,14 +276,20 @@ import {
 } from &#x27;class-validator&#x27;;
 
 export class CreateTagDto {
-  @ApiProperty()
+  @ApiProperty({
+    description: &#x27;The name of the tag&#x27;,
+    example: &#x27;JavaScript&#x27;,
+  })
   @IsString()
   @MinLength(3)
   @IsNotEmpty()
   @MaxLength(256)
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: &#x27;The slug of the tag&#x27;,
+    example: &#x27;javascript&#x27;,
+  })
   @IsString()
   @IsNotEmpty()
   @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {

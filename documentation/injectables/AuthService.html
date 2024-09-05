@@ -137,11 +137,13 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#isAuth" >isAuth</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#refreshTokens" >refreshTokens</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#login" >login</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#signIn" >signIn</a>
                             </li>
                         </ul>
                     </td>
@@ -161,12 +163,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>)</code>
+<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>, signInProvider: <a href="../injectables/SignInProvider.html" target="_self">SignInProvider</a>, refreshTokensProvider: <a href="../injectables/RefreshTokensProvider.html" target="_self">RefreshTokensProvider</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/auth/providers/auth.service.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/auth/providers/auth.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -195,6 +197,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>signInProvider</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SignInProvider.html" target="_self" >SignInProvider</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>refreshTokensProvider</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RefreshTokensProvider.html" target="_self" >RefreshTokensProvider</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -213,65 +239,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isAuth"></a>
+                    <a name="refreshTokens"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>isAuth</b></span>
-                        <a href="#isAuth"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>refreshTokens</b></span>
+                        <a href="#refreshTokens"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>isAuth()</code>
+                    <code>refreshTokens(refreshTokenDto: <a href="../classes/RefreshTokenDto.html" target="_self">RefreshTokenDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/auth/providers/auth.service.ts:18</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="login"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>login</b></span>
-                        <a href="#login"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>login(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/auth/providers/auth.service.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/auth/providers/auth.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -292,33 +280,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>email</td>
+                                                <td>refreshTokenDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>password</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/RefreshTokenDto.html" target="_self" >RefreshTokenDto</a></code>
                                             </td>
 
                                             <td>
@@ -331,7 +295,77 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signIn"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>signIn</b></span>
+                        <a href="#signIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signIn(signInDto: <a href="../classes/SignInDto.html" target="_self">SignInDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/auth/providers/auth.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>signInDto</td>
+                                            <td>
+                                                            <code><a href="../classes/SignInDto.html" target="_self" >SignInDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -349,6 +383,10 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, forwardRef } from &#x27;@nestjs/common&#x27;;
 import { UsersService } from &#x27;src/users/providers/users.service&#x27;;
+import { SignInDto } from &#x27;../dtos/signin.dto&#x27;;
+import { SignInProvider } from &#x27;./sign-in.provider&#x27;;
+import { RefreshTokenDto } from &#x27;../dtos/refresh-token.dto&#x27;;
+import { RefreshTokensProvider } from &#x27;./refresh-tokens.provider&#x27;;
 
 @Injectable()
 export class AuthService {
@@ -356,16 +394,20 @@ export class AuthService {
     /** Inject usersService */
     @Inject(forwardRef(() &#x3D;&gt; UsersService))
     private readonly usersService: UsersService,
+
+    /** Inject signInProvider */
+    private readonly signInProvider: SignInProvider,
+
+    /** Inject refreshTokensProvider */
+    private readonly refreshTokensProvider: RefreshTokensProvider
   ) {}
 
-  public login(email: string, password: string, id: string) {
-    const user &#x3D; this.usersService.findOneById(&#x27;1234&#x27;);
-    // login
-    return &#x27;SAMPLE_TOKEN&#x27;;
+  public async signIn(signInDto: SignInDto) {
+    return await this.signInProvider.signIn(signInDto);
   }
 
-  public isAuth() {
-    return true;
+  public async refreshTokens(refreshTokenDto: RefreshTokenDto) {
+   return await this.refreshTokensProvider.refreshTokens(refreshTokenDto);
   }
 }
 </code></pre>

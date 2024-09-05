@@ -140,6 +140,16 @@
                                     <span class="modifier">Async</span>
                                 <a href="#createTag" >createTag</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#delete" >delete</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -229,14 +239,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/tags/providers/tags.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/tags/providers/tags.service.ts:18</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Create a new tag</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -276,6 +288,150 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="delete"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>delete</b></span>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/tags/providers/tags.service.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Delete tag by ID</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(tags?: string[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/tags/providers/tags.service.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get all tags</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tags</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -283,7 +439,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateTagDto } from &#x27;./../dtos/create-tag.dto&#x27;;
-import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { BadRequestException, Injectable, RequestTimeoutException } from &#x27;@nestjs/common&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { Tag } from &#x27;../tag.schema&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
@@ -298,9 +454,37 @@ export class TagsService {
     private readonly tagsModel: Model&lt;Tag&gt;,
   ) {}
 
-  public async createTag(createTagDto: CreateTagDto) {
+   /** Create a new tag */
+   public async createTag(createTagDto: CreateTagDto) {
+    const existingTag &#x3D; await this.tagsModel.findOne({ $or: [{ slug: createTagDto.slug }, { name: createTagDto.name }] });
+    if (existingTag) {
+      throw new BadRequestException(&#x27;Tag with this slug or name already exists&#x27;);
+    }
+
     const newTag &#x3D; new this.tagsModel(createTagDto);
-    return await newTag.save();
+    try {
+      return await newTag.save();
+    } catch (error) {
+      throw new RequestTimeoutException(error);
+    }
+  }
+
+  /** Get all tags */
+  public async findAll(tags?: string[]) {
+    try {
+      return await this.tagsModel.find({ _id: { $in: tags } }).exec();
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Error fetching tags&#x27;);
+    }
+  }
+
+  /** Delete tag by ID */
+  public async delete(id: string) {
+    try {
+      return await this.tagsModel.findByIdAndDelete(id).exec();
+    } catch (error) {
+      throw new RequestTimeoutException(&#x27;Error deleting tag&#x27;);
+    }
   }
 }</code></pre>
     </div>

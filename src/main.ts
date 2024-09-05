@@ -26,6 +26,7 @@ const configSwagger = new DocumentBuilder()
 .setDescription('The REST API documentation for the BLOG WEB APP. Created with NestJS')
 .addServer('http://localhost:3000/')
 .addServer('https://backend-blog-app-ua3a.onrender.com/')
+.addBearerAuth()
 .setVersion('1.0')
 .build();
 // Instantiate Swagger

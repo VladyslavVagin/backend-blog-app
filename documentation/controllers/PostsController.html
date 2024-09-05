@@ -144,10 +144,27 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#createPost" >createPost</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#deletePost" >deletePost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#getPosts" >getPosts</a>
@@ -156,7 +173,11 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#updatePost" >updatePost</a>
                             </li>
                         </ul>
@@ -185,6 +206,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>createPost</b></span>
                         <a href="#createPost"><span class="icon ion-ios-link"></span></a>
@@ -194,7 +217,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createPost(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>)</code>
+                    <code>createPost(createPostDto: <a href="../classes/CreatePostDto.html" target="_self">CreatePostDto</a>, user: <a href="../interfaces/ActiveUserData.html" target="_self">ActiveUserData</a>)</code>
                 </td>
             </tr>
 
@@ -202,14 +225,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Creates a new post for the blog.&#x27;})<br />@ApiResponse({status: 201, description: &#x27;You get a success 201 response if the post is created successfully&#x27;})<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Creates a new post for the blog.&#x27;})<br />@ApiResponse({status: 201, description: &#x27;You get a success 201 response if the post is created successfully&#x27;})<br />@ApiBody({description: &#x27;Body for creating a post&#x27;, type: CreatePostDto})<br />@Post()<br />@ApiBearerAuth()<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/posts/posts.controller.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/posts/posts.controller.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -241,6 +264,18 @@
 
 
                                         </tr>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ActiveUserData.html" target="_self" >ActiveUserData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -259,19 +294,25 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getPosts"></a>
+                    <a name="deletePost"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
-                        <span ><b>getPosts</b></span>
-                        <a href="#getPosts"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>deletePost</b></span>
+                        <a href="#deletePost"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getPosts()</code>
+                    <code>deletePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -279,63 +320,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({summary: &#x27;Deletes a post from the database.&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The id of the post you want to delete&#x27;, required: true, example: &#x27;60f1b3b3b3b3b3b3b3b3b3&#x27;})<br />@ApiBearerAuth()<br />@ApiResponse({status: 200, description: &#x27;You get a success 200 response if the post is deleted&#x27;})<br />@ApiResponse({status: 404, description: &#x27;This the post does not exist&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/posts/posts.controller.ts:21</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updatePost"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
-                        <span ><b>updatePost</b></span>
-                        <a href="#updatePost"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updatePost(patchPostsDto: <a href="../classes/PatchPostDto.html" target="_self">PatchPostDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@ApiOperation({summary: &#x27;Updates and existing blog post in the database.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;You get a success 20o response if the post is updated successfully&#x27;})<br />@Patch()<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/posts/posts.controller.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/posts/posts.controller.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -356,6 +348,194 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPosts"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>getPosts</b></span>
+                        <a href="#getPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPosts(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, postQuery: <a href="../classes/GetPostsDto.html" target="_self">GetPostsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:userId?&#x27;)<br />@ApiOperation({summary: &#x27;Gets all posts for a user.&#x27;})<br />@ApiBearerAuth()<br />@ApiResponse({status: 200, description: &#x27;Posts fetched successfully based on the query&#x27;})<br />@ApiParam({name: &#x27;userId&#x27;, description: &#x27;The id of the user whose posts you want to fetch&#x27;, required: false, example: &#x27;60f1b3b3b3b3b3b3b3b3b3b3&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/posts/posts.controller.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>postQuery</td>
+                                            <td>
+                                                            <code><a href="../classes/GetPostsDto.html" target="_self" >GetPostsDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatePost"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updatePost</b></span>
+                        <a href="#updatePost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updatePost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, patchPostsDto: <a href="../classes/PatchPostDto.html" target="_self">PatchPostDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Updates an existing blog post in the database.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;You get a success 200 response if the post is updated successfully&#x27;})<br />@ApiBody({description: &#x27;Body for updating a post&#x27;, type: PatchPostDto})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;The id of the post you want to update&#x27;, required: true, example: &#x27;60f1b3b3b3b3b3b3b3b3b3&#x27;})<br />@ApiBearerAuth()<br />@Patch(&#x27;/:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/posts/posts.controller.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
                                                 <td>patchPostsDto</td>
                                             <td>
                                                             <code><a href="../classes/PatchPostDto.html" target="_self" >PatchPostDto</a></code>
@@ -371,7 +551,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -385,11 +565,30 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Param, Patch, Post } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from &#x27;@nestjs/common&#x27;;
 import { PostsService } from &#x27;./providers/posts.service&#x27;;
-import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from &#x27;@nestjs/swagger&#x27;;
 import { CreatePostDto } from &#x27;./dtos/create-post.dto&#x27;;
 import { PatchPostDto } from &#x27;./dtos/patch-post.dto&#x27;;
+import { GetPostsDto } from &#x27;./dtos/get-posts.dto&#x27;;
+import { ActiveUser } from &#x27;src/auth/decorators/active-user.decorator&#x27;;
+import { ActiveUserData } from &#x27;src/auth/interfaces/active-user.interface&#x27;;
 
 @Controller(&#x27;posts&#x27;)
 @ApiTags(&#x27;Posts&#x27;)
@@ -404,9 +603,26 @@ export class PostsController {
   /*
    * GET localhost:3000/posts/:userId
    */
-  @Get()
-  public getPosts() {
-    return this.postsService.findAll();
+  @Get(&#x27;/:userId?&#x27;)
+  @ApiOperation({
+    summary: &#x27;Gets all posts for a user.&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Posts fetched successfully based on the query&#x27;,
+  })
+  @ApiParam({
+    name: &#x27;userId&#x27;,
+    description: &#x27;The id of the user whose posts you want to fetch&#x27;,
+    required: false,
+    example: &#x27;60f1b3b3b3b3b3b3b3b3b3b3&#x27;,
+  })
+  public getPosts(
+    @Param(&#x27;userId&#x27;) userId: string,
+    @Query() postQuery: GetPostsDto,
+  ) {
+    return this.postsService.findAll(postQuery, userId);
   }
 
   @ApiOperation({
@@ -417,24 +633,71 @@ export class PostsController {
     description:
       &#x27;You get a success 201 response if the post is created successfully&#x27;,
   })
+  @ApiBody({
+    description: &#x27;Body for creating a post&#x27;,
+    type: CreatePostDto,
+  })
   @Post()
-  public createPost(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.createPost(createPostDto);
+  @ApiBearerAuth()
+  public createPost(
+    @Body() createPostDto: CreatePostDto,
+    @ActiveUser() user: ActiveUserData,
+  ) {
+    return this.postsService.createPost(createPostDto, user);
   }
 
   @ApiOperation({
-    summary: &#x27;Updates and existing blog post in the database.&#x27;,
+    summary: &#x27;Updates an existing blog post in the database.&#x27;,
   })
   @ApiResponse({
     status: 200,
     description:
-      &#x27;You get a success 20o response if the post is updated successfully&#x27;,
+      &#x27;You get a success 200 response if the post is updated successfully&#x27;,
   })
-  @Patch()
-  public updatePost(@Body() patchPostsDto: PatchPostDto) {
-    console.log(patchPostsDto);
+  @ApiBody({
+    description: &#x27;Body for updating a post&#x27;,
+    type: PatchPostDto,
+  })
+  @ApiParam({
+    name: &#x27;id&#x27;,
+    description: &#x27;The id of the post you want to update&#x27;,
+    required: true,
+    example: &#x27;60f1b3b3b3b3b3b3b3b3b3&#x27;,
+  })
+  @ApiBearerAuth()
+  @Patch(&#x27;/:id&#x27;)
+  public async updatePost(
+    @Param(&#x27;id&#x27;) id: string,
+    @Body() patchPostsDto: PatchPostDto,
+  ) {
+    patchPostsDto.id &#x3D; id; // set the _id property of patchPostsDto to the id from the route parameters
+    return await this.postsService.update(patchPostsDto);
   }
-}</code></pre>
+
+  @Delete(&#x27;/:id&#x27;)
+  @ApiOperation({
+    summary: &#x27;Deletes a post from the database.&#x27;,
+  })
+  @ApiParam({
+    name: &#x27;id&#x27;,
+    description: &#x27;The id of the post you want to delete&#x27;,
+    required: true,
+    example: &#x27;60f1b3b3b3b3b3b3b3b3b3&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    description: &#x27;You get a success 200 response if the post is deleted&#x27;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;This the post does not exist&#x27;,
+  })
+  public async deletePost(@Param(&#x27;id&#x27;) id: string) {
+    return await this.postsService.deletePost(id);
+  }
+}
+</code></pre>
     </div>
 </div>
 

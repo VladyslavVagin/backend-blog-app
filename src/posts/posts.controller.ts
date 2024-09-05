@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -104,5 +105,28 @@ export class PostsController {
   ) {
     patchPostsDto.id = id; // set the _id property of patchPostsDto to the id from the route parameters
     return await this.postsService.update(patchPostsDto);
+  }
+
+  @Delete('/:id')
+  @ApiOperation({
+    summary: 'Deletes a post from the database.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The id of the post you want to delete',
+    required: true,
+    example: '60f1b3b3b3b3b3b3b3b3b3',
+  })
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    description: 'You get a success 200 response if the post is deleted',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'This the post does not exist',
+  })
+  public async deletePost(@Param('id') id: string) {
+    return await this.postsService.deletePost(id);
   }
 }

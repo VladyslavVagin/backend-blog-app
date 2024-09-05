@@ -4,7 +4,7 @@ import { TagsService } from './providers/tags.service';
 import { CreateTagDto } from './dtos/create-tag.dto';
 
 @Controller('tags')
-@ApiTags('tags')
+@ApiTags('Tags')
 export class TagsController {
   constructor(
     /** Inject tagsService */
