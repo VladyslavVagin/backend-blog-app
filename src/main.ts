@@ -43,6 +43,6 @@ SwaggerModule.setup('api', app, document);
 
   app.enableCors();
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT_APP || 3000);
 }
 bootstrap();
